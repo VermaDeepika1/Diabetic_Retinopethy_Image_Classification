@@ -8,7 +8,8 @@ We will also attempt to explore different modeling techniques to predict the pre
   
 References:  
 1. https://www.mayoclinic.org/diseases-conditions/diabetic-retinopathy/symptoms-causes/syc-20371611  
-2. R, Revathy. (2020). Diabetic Retinopathy Detection using Machine Learning. International Journal of Engineering Research and. V9. 10.17577/IJERTV9IS060170.   
+2. https://www.kaggle.com/competitions/diabetic-retinopathy-detection/data
+3. R, Revathy. (2020). Diabetic Retinopathy Detection using Machine Learning. International Journal of Engineering Research and. V9. 10.17577/IJERTV9IS060170.   
 
 ## Items in this Repo
 1) "code" folder containing:
@@ -41,11 +42,11 @@ The data used in this project is a large set of retina images obtained from a Ka
 The data contains images with a variety of imaging conditions, some are overexposed, some are underexposed. The images also vary in zoom covering the area of interest and may also be flipped; some images are out of focus and are noisier than others which may make it hard to train the models but it also represent a real -life scenario where it is very pratical to encounter a variety of images/imaging conditions. Following figure shows representative set of images from the training set:  
   
 Figure 1:  
-![This is an image](./images/image_example.png)  
+![This is an image](./images/image_example.png)    
 On looking at the count of different classes of images, the data is severly imbalanced. A large portion of the data is for class 0 (21,279 images out of 28,860: 74%). The following histogram shows the counts for different classes:  
   
 Figure 2:  
-![This is an image](./images/image_count.png)  
+![This is an image](./images/image_count.png)    
 ### Pre-processing
   
 The images were resized to a dimension of 224x224 and saved on the disk to reduce the computational time during model fitting. The images were rescaled between 0 to 1 by dividing by 255 within CNN models.
@@ -53,7 +54,7 @@ The images were resized to a dimension of 224x224 and saved on the disk to reduc
 For binary classification (detection of presence or absence of DR), the images of class 0 was taken as one class (absence of DR) and all the images of class 1 through 4 were relabeled as 1 (presence of DR). Following histogram shows the counts for both the classes, class 0 (no DR) is about 74% of the data.  
   
 Figure 3:  
-![This is an image](./images/image_count_binary.png)
+![This is an image](./images/image_count_binary.png)  
 For multiclass classification, several different modeling techniques were tried including using the whole dataset, data augmentation within the model as well as using the pre-augmented data to overcome the imbalanced class problem. For data augmentation, different techniques like horizontal and vertical flipping, rotation, increasing/decreasing brightness etc. were used.    
 To deal with imbalanced classes, following techniques were attempted:  
 1. A subset of 4000 images of class 0 were taken, and all the images of rest of the classes (1 through 4) were taken. Data augmentation was implemented in the model as one of the first layers.   
@@ -99,7 +100,7 @@ Sparse categorical accuracy, and F1score and recall for all classes were analyze
 
 The performance of binary classification  models were analyzed based on Recall for class 1. The bar chart below displays the Recall for class 1 for all the models. 
 
-![This is an image](./images/binary_classification_recall1_labelled.png)
+![This is an image](./images/binary_classification_recall1_labelled.png)  
 
 
 As shown above, there are two models that show recall >0.5 for class 1, model 4 and model 9. We will consider model 9 (transfer learning- InceptionResNet V2) as a possible production model candidate since it has considerable higher recall for class 1 which is important for this classification. However, this model still has low precision and large number of false positives and needs to be tuned to improve the performance.
@@ -110,7 +111,7 @@ As shown above, there are two models that show recall >0.5 for class 1, model 4 
 The models that successfully classified between all the classes were analyzed based on sparse categorical accuracy, recall and f1-score. In this case, recall is the most important metrics so more emphasis was given on having high recall for positive classes (1 through 4). The figure below shows Recall for each class for all the models under consideration:
 
 
-![This is an image](./images/multiclass_classification_recall_labelled.png)
+![This is an image](./images/multiclass_classification_recall_labelled.png)  
 
 As shown above, model 5, 6, 20, 21 and 22 show better classification for class 1 through 4 compared to other models, but model 6 (VGG16 wt) shows very good recall (~0.7) for class 2 compared to others which might be crucial for earlier detection of the condition. Although it has a lower recall for class 1 compared to model 20-22, having a good recall for class 2 means this model will be able to catch more cases with moderate DR condition which will be very beneficial to start the treatment early for the patient.
 
