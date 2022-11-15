@@ -41,19 +41,18 @@ The data used in this project is a large set of retina images obtained from a Ka
 
 The data contains images with a variety of imaging conditions, some are overexposed, some are underexposed. The images also vary in zoom covering the area of interest and may also be flipped; some images are out of focus and are noisier than others which may make it hard to train the models but it also represent a real -life scenario where it is very pratical to encounter a variety of images/imaging conditions. Following figure shows representative set of images from the training set:  
   
-Figure 1:  
+
 ![This is an image](./images/image_example.png)    
 On looking at the count of different classes of images, the data is severly imbalanced. A large portion of the data is for class 0 (21,279 images out of 28,860: 74%). The following histogram shows the counts for different classes:  
   
-Figure 2:  
+ 
 ![This is an image](./images/image_count.png)    
 ### Pre-processing
   
 The images were resized to a dimension of 224x224 and saved on the disk to reduce the computational time during model fitting. The images were rescaled between 0 to 1 by dividing by 255 within CNN models.
   
 For binary classification (detection of presence or absence of DR), the images of class 0 was taken as one class (absence of DR) and all the images of class 1 through 4 were relabeled as 1 (presence of DR). Following histogram shows the counts for both the classes, class 0 (no DR) is about 74% of the data.  
-  
-Figure 3:  
+   
 ![This is an image](./images/image_count_binary.png)  
 For multiclass classification, several different modeling techniques were tried including using the whole dataset, data augmentation within the model as well as using the pre-augmented data to overcome the imbalanced class problem. For data augmentation, different techniques like horizontal and vertical flipping, rotation, increasing/decreasing brightness etc. were used.    
 To deal with imbalanced classes, following techniques were attempted:  
