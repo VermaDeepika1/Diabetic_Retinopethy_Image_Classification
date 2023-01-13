@@ -115,7 +115,7 @@ The models that successfully classified between all the classes were analyzed ba
 As shown above, model 5, 6, 20, 21 and 22 show better classification for class 1 through 4 compared to other models, but model 6 (VGG16 wt) shows very good recall (~0.7) for class 2 compared to others which might be crucial for earlier detection of the condition. Although it has a lower recall for class 1 compared to model 20-22, having a good recall for class 2 means this model will be able to catch more cases with moderate DR condition which will be very beneficial to start the treatment early for the patient.
 
 
-## Conculsions and Recommendations
+## Conclusions and Recommendations
 
 Binary classification: From the evaluation results above, it is recommended to move forward with model 9 (transfer learning- InceptionResNet V2) as production model candidate for detecting presence of condition. Although the model has high recall for class 1, it will need to be tuned to improve classification and reduce false positives. 
 
